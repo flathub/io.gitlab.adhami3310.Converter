@@ -112,7 +112,7 @@
 	      "name": "python3-lxml",
 	      "buildsystem": "simple",
 	      "build-commands": [
-		"pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"lxml\" --no-build-isolation"
+		"pip3 install --verbose --exists-action=i --ignore-installed --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"lxml\" --no-build-isolation"
 	      ],
 	      "sources": [
 		{
@@ -143,8 +143,7 @@
                 {
                     "type": "git",
                     "url": "https://gitlab.com/adhami3310/Converter.git",
-                    "tag": "v1.1.1",
-                    "commit": "ebd2374fe936f491db315e8ba0776b2936207a24"
+                    "commit": "441a014b10063f457192d59eec581f7e8ec061c2"
                 }
             ]
         }
