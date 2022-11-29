@@ -8,7 +8,8 @@
         "--share=ipc",
         "--socket=fallback-x11",
         "--device=dri",
-        "--socket=wayland"
+        "--socket=wayland",
+	"--talk-name=org.freedesktop.portal.OpenURI"
     ],
     "cleanup": [
         "/include",
@@ -143,7 +144,7 @@
                 {
                     "type": "git",
                     "url": "https://gitlab.com/adhami3310/Converter.git",
-                    "commit": "441a014b10063f457192d59eec581f7e8ec061c2"
+                    "commit": "778530a1bb8521d630f7caaf05b5c22299126634"
                 }
             ]
         }
