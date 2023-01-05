@@ -225,8 +225,8 @@
 			"sources": [
 				{
 					"type": "archive",
-					"url": "https://github.com/strukturag/libheif/releases/download/v1.13.0/libheif-1.13.0.tar.gz",
-					"sha256": "c20ae01bace39e89298f6352f1ff4a54b415b33b9743902da798e8a1e51d7ca1",
+					"url": "https://github.com/strukturag/libheif/releases/download/v1.14.0/libheif-1.14.0.tar.gz",
+					"sha256": "9a2b969d827e162fa9eba582ebd0c9f6891f16e426ef608d089b1f24962295b5",
 					"x-checker-data": {
 						"type": "anitya",
 						"project-id": 64439,
@@ -370,7 +370,7 @@
 				{
 					"type": "git",
 					"url": "https://gitlab.com/adhami3310/Converter.git",
-					"commit": "2c5b0c9c250078ca5b84f2f2609da81c4ab96ddb"
+					"commit": "152f2a4aa06294a054a344c7b39e2007f648b5e0"
 				}
 			]
 		}
