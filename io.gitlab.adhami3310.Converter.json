@@ -87,6 +87,23 @@
 			}
 		},
 		{
+			"name": "mozjpeg",
+			"buildsystem": "cmake",
+			"config-opts": [
+				"-DENABLE_STATIC=FALSE",
+				"-DPNG_SUPPORTED=TRUE",
+				"-DWITH_JPEG8=TRUE",
+				"-DCMAKE_INSTALL_LIBDIR=/app/lib"
+			],
+			"sources": [
+				{
+					"type": "archive",
+					"url": "https://github.com/mozilla/mozjpeg/archive/refs/tags/v4.1.1.tar.gz",
+					"sha256": "66b1b8d6b55d263f35f27f55acaaa3234df2a401232de99b6d099e2bb0a9d196"
+				}
+			]
+		},
+		{
 			"name": "webp-pixbuf-loader",
 			"buildsystem": "meson",
 			"sources": [
@@ -370,7 +387,7 @@
 				{
 					"type": "git",
 					"url": "https://gitlab.com/adhami3310/Converter.git",
-					"commit": "152f2a4aa06294a054a344c7b39e2007f648b5e0"
+					"commit": "e80795836a062156365f95b880aa751399cffff8"
 				}
 			]
 		}
