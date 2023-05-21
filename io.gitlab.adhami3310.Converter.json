@@ -341,19 +341,25 @@
 				}
 			]
 		},
-        {
-            "name": "converter",
-            "builddir": true,
-            "buildsystem": "meson",
-            "sources": [
-                "cargo-sources.json",
-                {
-                    "type": "git",
-                    "url": "https://gitlab.com/adhami3310/Converter.git",
-                    "tag": "v1.6.0",
-                    "commit": "3c914f6e85f0b9806b6b6fc357e56e8a5876d4d3"
-                }
-            ]
-        }
-    ]
+		{
+			"name": "converter",
+			"builddir": true,
+			"buildsystem": "meson",
+			"sources": [
+				"cargo-sources.json",
+				{
+					"type": "git",
+					"url": "https://gitlab.com/adhami3310/Converter.git",
+					"tag": "v1.6.0",
+					"commit": "3c914f6e85f0b9806b6b6fc357e56e8a5876d4d3"
+				}
+			],
+			"build-options": {
+				"append-path": "/usr/lib/sdk/rust-stable/bin",
+				"env": {
+					"CARGO_HOME": "/run/build/librsvg/cargo"
+				}
+			}
+		}
+	]
 }
