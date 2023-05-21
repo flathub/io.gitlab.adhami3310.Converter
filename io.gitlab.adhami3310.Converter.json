@@ -347,8 +347,8 @@
 			"sources": [
 				{
 					"type": "archive",
-					"url": "https://gitlab.com/adhami3310/Converter/uploads/5bfaf9c362f3007eadcdb21d78c541dc/converter-1.6.0.tar.xz",
-					"sha256": "0b09eac0ea8e5410aa718ad093308013e2c00542bbf2de34e7850d734577c432"
+					"url": "https://gitlab.com/adhami3310/Converter/uploads/2d1743dc0cfaf7cc37fba274c54d562d/converter-1.6.0.tar.xz",
+					"sha256": "575829472fb1818850d20925b4a7199037f42b0473a1c15f52a9adaf12a5cab5"
 				}
 			]
 		}
