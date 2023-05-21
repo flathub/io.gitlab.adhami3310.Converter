@@ -343,23 +343,14 @@
 		},
 		{
 			"name": "converter",
-			"builddir": true,
 			"buildsystem": "meson",
 			"sources": [
-				"cargo-sources.json",
 				{
-					"type": "git",
-					"url": "https://gitlab.com/adhami3310/Converter.git",
-					"tag": "v1.6.0",
-					"commit": "3c914f6e85f0b9806b6b6fc357e56e8a5876d4d3"
+					"type": "archive",
+					"url": "https://gitlab.com/adhami3310/Converter/uploads/5bfaf9c362f3007eadcdb21d78c541dc/converter-1.6.0.tar.xz",
+					"sha256": "0b09eac0ea8e5410aa718ad093308013e2c00542bbf2de34e7850d734577c432"
 				}
-			],
-			"build-options": {
-				"append-path": "/usr/lib/sdk/rust-stable/bin",
-				"env": {
-					"CARGO_HOME": "/run/build/converter/cargo"
-				}
-			}
+			]
 		}
 	]
 }
