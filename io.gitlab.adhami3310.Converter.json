@@ -1,7 +1,7 @@
 {
     "app-id": "io.gitlab.adhami3310.Converter",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "48",
+    "runtime-version": "49",
     "sdk": "org.gnome.Sdk",
     "sdk-extensions": [
         "org.freedesktop.Sdk.Extension.rust-stable"
@@ -30,63 +30,14 @@
     ],
     "modules": [
         {
-            "name": "blueprint-compiler",
-            "buildsystem": "meson",
-            "cleanup": [
-                "*"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
-                    "tag": "v0.16.0",
-                    "commit": "04ef0944db56ab01307a29aaa7303df6067cb3c0"
-                }
-            ]
-        },
-        {
-            "name": "gdk-pixbuf",
-            "buildsystem": "meson",
-            "config-opts": [
-                "-Dgtk_doc=false",
-                "-Dman=false"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/gdk-pixbuf.git",
-                    "tag": "2.42.12",
-                    "commit": "e4315fb8553776e13d39e3f2e0ea8792db61720c"
-                }
-            ]
-        },
-        {
-            "name": "librsvg",
-            "buildsystem": "autotools",
-            "sources": [
-                "librsvg-cargo-sources.json",
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/librsvg.git",
-                    "tag": "2.56.0",
-                    "commit": "b831e077174ae608d8cd09e532fc0e7ce1fe5c4f"
-                }
-            ],
-            "build-options": {
-                "append-path": "/usr/lib/sdk/rust-stable/bin",
-                "env": {
-                    "CARGO_HOME": "/run/build/librsvg/cargo"
-                }
-            }
-        },
-        {
             "name": "mozjpeg",
             "buildsystem": "cmake",
             "config-opts": [
                 "-DENABLE_STATIC=FALSE",
                 "-DPNG_SUPPORTED=TRUE",
                 "-DWITH_JPEG8=TRUE",
-                "-DCMAKE_INSTALL_LIBDIR=/app/lib"
+                "-DCMAKE_INSTALL_LIBDIR=/app/lib",
+                "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
             ],
             "sources": [
                 {
@@ -97,251 +48,51 @@
             ]
         },
         {
-            "name": "webp-pixbuf-loader",
-            "buildsystem": "meson",
+            "name": "ghostscript",
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://github.com/aruiz/webp-pixbuf-loader.git",
-                    "tag": "0.2.7",
-                    "commit": "52232e4ba282b2fed68e8fcb4b5d45ed0eaa4ed3"
-                }
-            ]
-        },
-        {
-            "name": "libheif",
-            "cleanup": [
-                "/bin"
-            ],
-            "buildsystem": "cmake-ninja",
-            "modules": [
-                {
-                    "name": "libde265",
-                    "config-opts": [
-                        "--disable-dec265",
-                        "--disable-encoder",
-                        "--disable-sherlock265"
-                    ],
-                    "cleanup": [
-                        "/bin"
-                    ],
-                    "sources": [
-                        {
-                            "type": "archive",
-                            "url": "https://github.com/strukturag/libde265/releases/download/v1.0.15/libde265-1.0.15.tar.gz",
-                            "sha256": "00251986c29d34d3af7117ed05874950c875dd9292d016be29d3b3762666511d"
-                        }
-                    ]
+                    "type": "archive",
+                    "url": "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10060/ghostscript-10.06.0.tar.gz",
+                    "sha256": "5bd6da34794928cc7e616f288e32bd0be7f9a5ca2d3c206a0af2c19a4e3a318f"
                 },
                 {
-                    "name": "libx265",
-                    "buildsystem": "cmake",
-                    "subdir": "source",
-                    "config-opts": [
-                        "-DEXTRA_LIB='libx265-10.a;libx265-12.a'",
-                        "-DEXTRA_LINK_FLAGS=-L.",
-                        "-DLINKED_10BIT=ON",
-                        "-DLINKED_12BIT=ON"
-                    ],
-                    "cleanup": [
-                        "/bin"
-                    ],
-                    "sources": [
-                        {
-                            "type": "archive",
-                            "url": "https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.1.tar.gz",
-                            "sha256": "a31699c6a89806b74b0151e5e6a7df65de4b49050482fe5ebf8a4379d7af8f29"
-                        },
-                        {
-                            "type": "shell",
-                            "commands": [
-                                "ln -s ${FLATPAK_DEST}/lib/libx265-10.a",
-                                "ln -s ${FLATPAK_DEST}/lib/libx265-12.a",
-                                "rm -fr ${FLATPAK_DEST}/lib/libx265.so*"
-                            ]
-                        }
-                    ],
-                    "modules": [
-                        {
-                            "name": "libx265-10bpc",
-                            "buildsystem": "cmake",
-                            "subdir": "source",
-                            "config-opts": [
-                                "-DCMAKE_BUILD_TYPE=Release",
-                                "-DHIGH_BIT_DEPTH=ON",
-                                "-DEXPORT_C_API=OFF",
-                                "-DENABLE_SHARED=OFF",
-                                "-DENABLE_CLI=OFF",
-                                "-DENABLE_ASSEMBLY=OFF"
-                            ],
-                            "sources": [
-                                {
-                                    "type": "archive",
-                                    "url": "https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.1.tar.gz",
-                                    "sha256": "a31699c6a89806b74b0151e5e6a7df65de4b49050482fe5ebf8a4379d7af8f29"
-                                }
-                            ],
-                            "post-install": [
-                                "mv ${FLATPAK_DEST}/lib/libx265.a ${FLATPAK_DEST}/lib/libx265-10.a"
-                            ]
-                        },
-                        {
-                            "name": "libx265-12bpc",
-                            "buildsystem": "cmake",
-                            "subdir": "source",
-                            "config-opts": [
-                                "-DHIGH_BIT_DEPTH=ON",
-                                "-DCMAKE_BUILD_TYPE=Release",
-                                "-DEXPORT_C_API=OFF",
-                                "-DENABLE_SHARED=OFF",
-                                "-DENABLE_CLI=OFF",
-                                "-DENABLE_ASSEMBLY=OFF",
-                                "-DMAIN12=ON"
-                            ],
-                            "sources": [
-                                {
-                                    "type": "archive",
-                                    "url": "https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.1.tar.gz",
-                                    "sha256": "a31699c6a89806b74b0151e5e6a7df65de4b49050482fe5ebf8a4379d7af8f29"
-                                }
-                            ],
-                            "post-install": [
-                                "mv ${FLATPAK_DEST}/lib/libx265.a ${FLATPAK_DEST}/lib/libx265-12.a"
-                            ]
-                        }
+                    "type": "shell",
+                    "commands": [
+                        "cp -p /usr/share/automake-*/config.{sub,guess} freetype/builds/unix/",
+                        "cp -p /usr/share/automake-*/config.{sub,guess} ijs/",
+                        "cp -p /usr/share/automake-*/config.{sub,guess} jpeg/",
+                        "cp -p /usr/share/automake-*/config.{sub,guess} libpng/",
+                        "cp -p /usr/share/automake-*/config.{sub,guess} lcms2mt/",
+                        "cp -p /usr/share/automake-*/config.{sub,guess} tiff/config/",
+                        "rm -rf libpng/pngread.c"
                     ]
                 }
             ],
             "config-opts": [
-                "-DCMAKE_COMPILE_WARNING_AS_ERROR=OFF",
-                "-DBUILD_TESTING=OFF",
-                "-DWITH_EXAMPLES=OFF"
+                "--disable-cups",
+                "--disable-gtk",
+                "--without-tesseract",
+                "--without-libpaper",
+                "--without-pdftoraster"
             ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/strukturag/libheif/releases/download/v1.19.7/libheif-1.19.7.tar.gz",
-                    "sha256": "161c042d2102665fcee3ded851c78a0eb5f2d4bfe39fba48ba6e588fd6e964f3"
-                }
-            ]
-        },
-        {
-            "name": "liblqr",
-            "buildsystem": "autotools",
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/carlobaldassi/liblqr.git",
-                    "commit": "29bf27b47e8d467c61337e50b1fbd638dff0ecf0"
-                }
-            ]
-        },
-        {
-            "name": "imath",
-            "buildsystem": "cmake",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/AcademySoftwareFoundation/Imath/releases/download/v3.1.12/Imath-3.1.12.tar.gz",
-                    "sha256": "cb8ca9ca77ac4338ebbee911fc90c886011ac5b00088630bacf8ef6c6e522f0a"
-                }
-            ]
-        },
-        {
-            "name": "libdeflate",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/ebiggers/libdeflate.git",
-                    "tag": "v1.23",
-                    "x-checker-data": {
-                        "type": "git"
-                    },
-                    "commit": "78051988f96dc8d8916310d8b24021f01bd9e102"
-                }
-            ]
-        },
-        {
-            "name": "openexr",
-            "buildsystem": "cmake",
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/AcademySoftwareFoundation/openexr.git",
-                    "tag": "v3.3.3",
-                    "commit": "da760aa4b6bee4b9d74b8c6a151221b035fc47b7",
-                    "disable-submodules": false
-                }
-            ]
-        },
-        {
-            "name": "libjxl",
-            "config-opts": [
-                "-DBUILD_TESTING=OFF",
-                "-DJPEGXL_ENABLE_BENCHMARK=OFF",
-                "-DJPEGXL_ENABLE_DOXYGEN=OFF",
-                "-DJPEGXL_ENABLE_EXAMPLES=OFF",
-                "-DJPEGXL_ENABLE_JNI=OFF",
-                "-DJPEGXL_ENABLE_MANPAGES=OFF",
-                "-DJPEGXL_ENABLE_PLUGINS=OFF",
-                "-DJPEGXL_ENABLE_SJPEG=OFF",
-                "-DJPEGXL_ENABLE_SKCMS=OFF",
-                "-DJPEGXL_ENABLE_TCMALLOC=OFF",
-                "-DJPEGXL_ENABLE_TOOLS=OFF",
-                "-DJPEGXL_FORCE_SYSTEM_BROTLI=ON",
-                "-DJPEGXL_FORCE_SYSTEM_HWY=ON",
-                "-DJPEGXL_FORCE_SYSTEM_LCMS2=ON",
-                "-DJPEGXL_WARNINGS_AS_ERRORS=OFF"
+            "make-args": [
+                "so"
             ],
-            "buildsystem": "cmake-ninja",
-            "modules": [
-                {
-                    "name": "libhwy",
-                    "config-opts": [
-                        "-DBUILD_TESTING=OFF",
-                        "-DBUILD_SHARED_LIBS=OFF",
-                        "-DHWY_ENABLE_EXAMPLES=OFF",
-                        "-DHWY_ENABLE_TESTS=OFF",
-                        "-DHWY_FORCE_STATIC_LIBS=ON"
-                    ],
-                    "buildsystem": "cmake-ninja",
-                    "builddir": true,
-                    "sources": [
-                        {
-                            "type": "archive",
-                            "url": "https://github.com/google/highway/releases/download/1.2.0/highway-1.2.0.tar.gz",
-                            "sha256": "58e9d5d41d6573ad15245ad76aec53a69499ca7480c092d899c4424812ed906f"
-                        }
-                    ]
-                }
+            "make-install-args": [
+                "soinstall"
             ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/libjxl/libjxl.git",
-                    "tag": "v0.11.1",
-                    "commit": "794a5dcf0d54f9f0b20d288a12e87afb91d20dfc"
-                }
-            ]
-        },
-        {
-            "name": "gs",
-            "buildsystem": "autotools",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10050/ghostscript-10.05.0.tar.gz",
-                    "sha256": "56e77833de683825c420d0af8cb90aa8ba7da71ea6fb5624290cbc1b53fe7942"
-                }
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/pkgconfig",
+                "/share"
             ]
         },
         {
             "name": "magick",
             "buildsystem": "simple",
             "build-commands": [
-                "./configure --prefix=/app --with-heic=yes --with-rsvg=yes",
+                "./configure --prefix=/app --with-heic=yes --with-jxl=yes --with-rsvg=yes --with-gslib=yes",
                 "make",
                 "make install"
             ],
@@ -349,28 +100,12 @@
                 {
                     "type": "git",
                     "url": "https://github.com/ImageMagick/ImageMagick.git",
-                    "tag": "7.1.1-47",
-                    "commit": "82572afc879b439cbf8c9c6f3a9ac7626adf98fb"
+                    "tag": "7.1.2-8",
+                    "commit": "a3b13d143fd7dea44cd71d31aa02f411b597688f"
                 }
             ]
         },
         {
-            "name": "gdk-pixbuff-jxl-loader",
-            "buildsystem": "simple",
-            "build-commands": [
-                "cd plugins/gdk-pixbuf && cmake -DCMAKE_INSTALL_PREFIX=/app",
-                "cd plugins/gdk-pixbuf && make install",
-                "/app/bin/gdk-pixbuf-query-loaders > /app/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://gitlab.com/wg1/jpeg-xl/-/archive/4bc3dbae9950359ed0d385d3a0b35a66b960dc0d/jpeg-xl-4bc3dbae9950359ed0d385d3a0b35a66b960dc0d.tar.gz?path=plugins/gdk-pixbuf",
-                    "sha256": "9fb854a15bbb445e1bb63c46315d197b417e0e380daeb3b1c2f344ffbe2dc823"
-                }
-            ]
-        },
-         {
             "name": "switcheroo",
             "buildsystem": "meson",
             "config-opts": [
@@ -379,8 +114,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gitlab.com/-/project/41292464/uploads/4a9a2f156d9b795415d518403decb59c/switcheroo-2.4.0.tar.xz",
-                    "sha256": "8b5c2ddd73d17f9fc5d936df5e30a72ac6f1e563d98e69e1c05eebd1ae60ab6b"
+                    "url": "https://gitlab.com/-/project/41292464/uploads/a4e9f70cb763e6c7b41f409338a91b6c/switcheroo-2.5.0.tar.xz",
+                    "sha256": "21cacc096d014a44ed8c066dce98e98d7b099ac1ae5101a75028a2b315fd8155"
                 }
             ]
         }
