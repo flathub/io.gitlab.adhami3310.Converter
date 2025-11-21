@@ -114,8 +114,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gitlab.com/-/project/41292464/uploads/a4e9f70cb763e6c7b41f409338a91b6c/switcheroo-2.5.0.tar.xz",
-                    "sha256": "21cacc096d014a44ed8c066dce98e98d7b099ac1ae5101a75028a2b315fd8155"
+                    "url": "https://gitlab.com/-/project/41292464/uploads/1018de59a8ec3466929ed0bfb428b255/switcheroo-2.5.1.tar.xz",
+                    "sha256": "3394030b9aa8d3c70652d917d71951f462cda52a658cc98b5dc74a8ac2f3aaef"
                 }
             ]
         }
