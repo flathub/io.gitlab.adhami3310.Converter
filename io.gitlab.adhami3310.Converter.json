@@ -1,7 +1,7 @@
 {
     "app-id": "io.gitlab.adhami3310.Converter",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "49",
+    "runtime-version": "50",
     "sdk": "org.gnome.Sdk",
     "sdk-extensions": [
         "org.freedesktop.Sdk.Extension.rust-stable"
@@ -110,8 +110,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gitlab.com/-/project/41292464/uploads/42f5330bcfc32a8bf488bbae3663b180/switcheroo-2.5.2.tar.xz",
-                    "sha256": "c6fc1ddba945a7170549e4ad169803e4e5adf12a5b74e4029de7c6b1180e7936"
+                    "url": "https://gitlab.com/-/project/41292464/uploads/a31f472445361fd40b42bf6ec7309ff1/switcheroo-2.6.0.tar.xz",
+                    "sha256": "cb1e2c27ebc421bb2823ebed3e135dc84a741921a3b5b6153c4ef7337d353eb6"
                 }
             ]
         }
